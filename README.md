@@ -47,7 +47,7 @@ docker-compose up -d
 
 ## 分层结构
 
-![image-20210715233358840](https://pic-bed-1256249917.cos.ap-chengdu.myqcloud.com/uPic/image-20210715233358840.png)
+![image-20210716000805256](https://pic-bed-1256249917.cos.ap-chengdu.myqcloud.com/uPic/image-20210716000805256.png)
 
 
 
