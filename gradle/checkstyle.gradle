@@ -1,0 +1,8 @@
+checkstyle {
+    maxWarnings = 0
+    ignoreFailures = false
+}
+
+checkstyleMain {
+    source = fileTree('src/main/java')
+}

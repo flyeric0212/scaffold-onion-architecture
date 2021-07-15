@@ -1,0 +1,31 @@
+# IDEA
+.idea
+*.iml
+*.ipr
+*.iws
+
+# VS Code
+.vscode/
+
+# Gradle
+.gradle
+out/
+build/**
+**/build/
+classes/
+
+# Mac
+.DS_Store
+
+# Eclipse
+**/*.project
+**/*.classpath
+**/*.settings
+
+# Project
+*.hprof
+*.log
+**/*.log
+**/*.log.*
+
+src/main/generated/**

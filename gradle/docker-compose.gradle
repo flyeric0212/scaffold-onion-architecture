@@ -1,0 +1,8 @@
+apply plugin: "com.avast.gradle.docker-compose"
+
+dockerCompose {
+    useComposeFiles = ['docker-compose.yaml']
+}
+
+dockerCompose.isRequiredBy(bootRun)
+dockerCompose.isRequiredBy(test)

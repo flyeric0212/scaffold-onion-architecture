@@ -1,0 +1,83 @@
+plugins {
+    id "java"
+    id "idea"
+    id "jacoco"
+    id "checkstyle"
+
+    id "org.springframework.boot" version "2.5.2"
+    id "io.spring.dependency-management" version "1.0.11.RELEASE"
+
+    id "com.avast.gradle.docker-compose" version "0.14.4"
+    id "org.flywaydb.flyway" version "7.11.2"
+}
+
+group = 'top.flyeric'
+version = '1.0.0-SNAPSHOT'
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+repositories {
+    maven {
+        url "https://maven.aliyun.com/repository/central"
+    }
+    mavenCentral()
+}
+
+ext {
+    lombokVersion = "1.18.20"
+    mapstructVersion = "1.4.2.Final"
+    swaggerVersion = "3.0.0"
+    alibabaTTLVersion = "2.12.0"
+    guavaVersion = "30.0-jre"
+    queryDslVersion = "4.4.0"
+    archunitVersion = "0.20.0"
+    restAssuredVersion = "4.4.0"
+}
+
+apply from: "${rootProject.projectDir}/gradle/jacoco.gradle"
+apply from: "${rootProject.projectDir}/gradle/checkstyle.gradle"
+apply from: "${rootProject.projectDir}/gradle/docker-compose.gradle"
+
+dependencies {
+    compileOnly("org.projectlombok:lombok:${lombokVersion}")
+    annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
+    compileOnly("org.mapstruct:mapstruct-processor:${mapstructVersion}")
+    annotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}")
+    compileOnly("com.querydsl:querydsl-apt:${queryDslVersion}")
+    annotationProcessor(
+            "com.querydsl:querydsl-apt:${queryDslVersion}:jpa",
+            "javax.persistence:javax.persistence-api:2.2",
+            "javax.annotation:javax.annotation-api:1.3.2"
+    )
+
+    // springboot frameworks
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation("org.springframework.data:spring-data-commons")
+    implementation("org.springframework.boot:spring-boot-starter-logging")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+
+    implementation('org.apache.commons:commons-collections4:4.4')
+    implementation("org.apache.commons:commons-lang3")
+    implementation("org.mapstruct:mapstruct:${mapstructVersion}")
+    implementation("com.google.guava:guava:${guavaVersion}")
+    implementation("com.alibaba:transmittable-thread-local:${alibabaTTLVersion}")
+    implementation("com.querydsl:querydsl-jpa:${queryDslVersion}")
+    implementation("io.springfox:springfox-swagger2:${swaggerVersion}")
+    implementation("io.springfox:springfox-swagger-ui:${swaggerVersion}")
+
+    implementation('org.flywaydb:flyway-core')
+    runtimeOnly('mysql:mysql-connector-java')
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("com.tngtech.archunit:archunit:${archunitVersion}")
+    testImplementation("com.tngtech.archunit:archunit-junit5:${archunitVersion}")
+    testImplementation("io.rest-assured:spring-mock-mvc:${restAssuredVersion}")
+    testImplementation("com.github.springtestdbunit:spring-test-dbunit:1.3.0")
+    testImplementation("org.dbunit:dbunit:2.7.0")
+    testImplementation("org.jyaml:jyaml:1.3")
+}
+
+

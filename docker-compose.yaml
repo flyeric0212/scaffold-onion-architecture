@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:8.0.22
+    tmpfs: /var/lib/mysql:rw
+    command:
+      --default-time-zone=+8:00
+      --innodb-buffer-pool-size=20M
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+    environment:
+      - "MYSQL_DATABASE=example"
+      - "MYSQL_ROOT_PASSWORD=password"
+    ports:
+      - "3306:3306"
+
+#  redis:
+#    image: redis:5.0.3
+#    ports:
+#      - "6379:6379"
