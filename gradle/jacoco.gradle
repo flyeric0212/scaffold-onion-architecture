@@ -2,7 +2,7 @@ def excludeClasses = [
 ]
 
 jacocoTestCoverageVerification {
-    executionData test
+    executionData test, integrationTest
     violationRules {
         rule {
             limit {
@@ -19,8 +19,8 @@ jacocoTestCoverageVerification {
 }
 
 jacocoTestReport {
-    shouldRunAfter test
-    executionData test
+    shouldRunAfter test, integrationTest
+    executionData test, integrationTest
     reports {
         csv.enabled false
         xml.enabled true
@@ -34,5 +34,6 @@ jacocoTestReport {
     }
 }
 
+jacocoTestReport.dependsOn test, integrationTest
 jacocoTestCoverageVerification.dependsOn jacocoTestReport
 check.dependsOn jacocoTestCoverageVerification

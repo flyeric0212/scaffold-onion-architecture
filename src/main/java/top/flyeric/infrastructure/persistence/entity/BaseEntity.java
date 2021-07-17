@@ -1,7 +1,5 @@
 package top.flyeric.infrastructure.persistence.entity;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -13,6 +11,9 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter

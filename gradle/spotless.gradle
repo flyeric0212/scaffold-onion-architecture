@@ -1,0 +1,13 @@
+spotless {
+    java {
+        licenseHeaderFile rootProject.file('config/spotless/cr.license.java')
+
+        importOrderFile rootProject.file('config/spotless/import_order.config')
+        eclipse().configFile file('config/spotless/eclipse-java-google-style.xml')
+
+        removeUnusedImports()
+        indentWithSpaces()
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
+}

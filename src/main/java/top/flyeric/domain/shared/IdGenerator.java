@@ -1,10 +1,11 @@
 package top.flyeric.domain.shared;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
 
 import java.util.UUID;
+
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class IdGenerator {

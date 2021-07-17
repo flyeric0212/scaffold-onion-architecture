@@ -1,0 +1,28 @@
+sourceSets {
+    intTest {
+        java.srcDir file('src/intTest/java')
+        resources.srcDir file('src/intTest/resources')
+        compileClasspath += sourceSets.main.output + sourceSets.test.output
+        runtimeClasspath += sourceSets.main.output + sourceSets.test.output
+    }
+}
+
+configurations {
+    intTestImplementation.extendsFrom testImplementation
+    intTestRuntimeOnly.extendsFrom testRuntimeOnly
+}
+
+task integrationTest(type: Test) {
+    description = 'Runs integration tests.'
+    group = 'verification'
+
+    testClassesDirs = sourceSets.intTest.output.classesDirs
+    classpath = sourceSets.intTest.runtimeClasspath
+    shouldRunAfter test
+}
+
+integrationTest {
+    jvmArgs '-Dspring.profiles.active=test'
+}
+
+check.dependsOn integrationTest
