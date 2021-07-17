@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+
+    <springProperty scope="context" name="APP_NAME" source="spring.application.name"/>
+
+    <appender name="JSON_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <fieldNames>
+                <timestamp>log_time</timestamp>
+                <version>[ignore]</version>
+                <levelValue>[ignore]</levelValue>
+            </fieldNames>
+            <customFields>{"app_name":"${APP_NAME}","env":"${SPRING_PROFILES_ACTIVE}"}</customFields>
+            <mdcKeyFieldName>requestId=request_id</mdcKeyFieldName>
+            <!-- This 'fixes' double quote problem for elastic -->
+            <jsonFactoryDecorator class="net.logstash.logback.decorate.CharacterEscapesJsonFactoryDecorator">
+                <escape>
+                    <targetCharacterCode>34</targetCharacterCode>
+                    <escapeSequence>'</escapeSequence>
+                </escape>
+            </jsonFactoryDecorator>
+            <!-- This shortens extremely long stacktraces. Not always needed -->
+            <throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+                <maxDepthPerThrowable>60</maxDepthPerThrowable>
+                <maxLength>2048</maxLength>
+                <shortenedClassNameLength>100</shortenedClassNameLength>
+                <exclude>sun\.reflect\..*\.invoke.*</exclude>
+                <exclude>net\.sf\.cglib\.proxy\.MethodProxy\.invoke</exclude>
+                <rootCauseFirst>true</rootCauseFirst>
+                <inlineHash>false</inlineHash>
+            </throwableConverter>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <springProfile name="local,test">
+            <appender-ref ref="CONSOLE" />
+        </springProfile>
+        <springProfile name="dev,qa,uat,prod">
+            <appender-ref ref="JSON_CONSOLE"/>
+        </springProfile>
+    </root>
+</configuration>
