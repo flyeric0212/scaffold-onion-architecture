@@ -5,4 +5,4 @@ dockerCompose {
 }
 
 dockerCompose.isRequiredBy(bootRun)
-dockerCompose.isRequiredBy(test)
+//dockerCompose.isRequiredBy(test)

@@ -34,15 +34,29 @@ gradle wrapper --gradle-version 7.1.1
 ```
 docker-compose up -d
 ```
+也可以使用命令：
+```
+./gradlew composeUp
+./gradlew composeDown 
+```
 
 ### 本地
 ```
 ./gradlew clean build 
+
+或者
+
+./gradlew clean composeUp build composeDown
 ```
 
 ### 本地运行
 ```
 ./gradlew bootRun
+```
+
+### 修复代码格式
+```
+./gradlew spotlessApply
 ```
 
 ## 分层结构

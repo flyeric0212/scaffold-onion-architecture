@@ -19,10 +19,25 @@ sourceCompatibility = 11
 targetCompatibility = 11
 
 repositories {
+    mavenCentral()
     maven {
         url "https://maven.aliyun.com/repository/central"
     }
-    mavenCentral()
+    maven {
+        credentials {
+            username "${ALIYUN_MAVEN_USER}"
+            password "${ALIYUN_MAVEN_PASSWORD}"
+        }
+        url 'https://packages.aliyun.com/maven/repository/2006205-release-klNaKw/'
+    }
+
+    maven {
+        credentials {
+            username "${ALIYUN_MAVEN_USER}"
+            password "${ALIYUN_MAVEN_PASSWORD}"
+        }
+        url 'https://packages.aliyun.com/maven/repository/2006205-snapshot-niWcQo/'
+    }
 }
 
 ext {
@@ -34,6 +49,7 @@ ext {
     queryDslVersion = "4.4.0"
     archunitVersion = "0.20.0"
     restAssuredVersion = "4.4.0"
+    commonsCollectionsVersion = "4.4"
 }
 
 apply from: "${rootProject.projectDir}/gradle/integration-test.gradle"
@@ -54,6 +70,8 @@ dependencies {
             "javax.annotation:javax.annotation-api:1.3.2"
     )
 
+    implementation("top.flyeric:base-lib:1.0.3-SNAPSHOT")
+
     // springboot frameworks
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-validation")
@@ -62,8 +80,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
 
-    implementation('org.apache.commons:commons-collections4:4.4')
     implementation("org.apache.commons:commons-lang3")
+    implementation("org.apache.commons:commons-collections4:${commonsCollectionsVersion}")
     implementation("org.mapstruct:mapstruct:${mapstructVersion}")
     implementation("com.google.guava:guava:${guavaVersion}")
     implementation("com.alibaba:transmittable-thread-local:${alibabaTTLVersion}")
@@ -71,8 +89,8 @@ dependencies {
     implementation("io.springfox:springfox-swagger2:${swaggerVersion}")
     implementation("io.springfox:springfox-swagger-ui:${swaggerVersion}")
 
-    implementation('org.flywaydb:flyway-core')
-    runtimeOnly('mysql:mysql-connector-java')
+    implementation("org.flywaydb:flyway-core")
+    runtimeOnly("mysql:mysql-connector-java")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("com.tngtech.archunit:archunit:${archunitVersion}")
@@ -86,4 +104,6 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+
 
