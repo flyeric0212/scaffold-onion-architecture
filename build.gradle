@@ -1,6 +1,5 @@
 plugins {
     id "java"
-    id "application"
     id "idea"
     id "jacoco"
     id "checkstyle"
@@ -102,15 +101,3 @@ dependencies {
 test {
     useJUnitPlatform()
 }
-
-jar {
-    enabled = true
-    archiveClassifier = '' //use empty string
-}
-
-application {
-    mainClass = 'top.flyeric.ExampleApplication'
-}
-
-
-
