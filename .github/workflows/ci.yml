@@ -1,0 +1,61 @@
+# This workflow will build a Java project with Gradle
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
+
+name: CI Actions
+
+on:
+  push:
+    branches: 
+      - master
+  pull_request:
+    branches: 
+      - master
+
+env:
+  TZ: Asia/Shanghai
+  DOCKER_IMAGE_URL: docker.io/amuguelove/example-service
+
+jobs:
+   ci-tasks:
+
+    name: Setup, Build, and Publish
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Set up JDK 11
+      uses: joschi/setup-jdk@v2
+      with:
+        java-version: '11' # The OpenJDK version to make available on the path
+        architecture: 'x64' # defaults to 'x64'
+
+    - name: Cache Gradle packages
+      uses: actions/cache@v2
+      with:
+        path: ~/.gradle/caches
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+        restore-keys: ${{ runner.os }}-gradle
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+
+    - name: Build with Gradle
+      run: ./gradlew clean build -PALIYUN_MAVEN_USER=${{ secrets.ALIYUN_MAVEN_USER}} -PALIYUN_MAVEN_PASSWORD=${{ secrets.ALIYUN_MAVEN_PASSWORD}}
+
+    - name: Set Image Tag
+      run: echo "IMAGE_TAG=$(date +'%Y-%m-%d-%H%M%S')-${GITHUB_REF##*/}" >> $GITHUB_ENV
+
+    - name: Build Docker image
+      run: |
+       docker build -t ${DOCKER_IMAGE_URL}:${IMAGE_TAG} .
+
+    - name: Login Docker Registry
+      run: |
+        docker login -u ${{ secrets.DOCKER_REGISTRY_ACCOUNT }} -p ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
+
+    - name: Publish Image
+      run: |
+        docker push ${DOCKER_IMAGE_URL}:${IMAGE_TAG}
