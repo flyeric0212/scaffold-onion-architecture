@@ -4,5 +4,5 @@ dockerCompose {
     useComposeFiles = ['docker-compose.yaml']
 }
 
-dockerCompose.isRequiredBy(bootRun)
+//dockerCompose.isRequiredBy(bootRun)
 //dockerCompose.isRequiredBy(test)
