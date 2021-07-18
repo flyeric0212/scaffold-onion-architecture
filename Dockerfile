@@ -7,4 +7,4 @@ RUN apk add tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 
 COPY build/libs/*.jar /opt/app.jar
 
-ENTRYPOINT ["java", "-jar", "/opt/app.jar"]
+ENTRYPOINT ["java", "-XX:+UseContainerSupport", "-jar", "/opt/app.jar"]
