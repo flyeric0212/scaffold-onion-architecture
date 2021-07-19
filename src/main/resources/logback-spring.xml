@@ -4,6 +4,7 @@
     <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
 
     <springProperty scope="context" name="APP_NAME" source="spring.application.name"/>
+    <springProperty scope="context" name="SPRING_PROFILES" source="spring.profiles.active"/>
 
     <appender name="JSON_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="net.logstash.logback.encoder.LogstashEncoder">
@@ -12,7 +13,7 @@
                 <version>[ignore]</version>
                 <levelValue>[ignore]</levelValue>
             </fieldNames>
-            <customFields>{"app_name":"${APP_NAME}","env":"${SPRING_PROFILES_ACTIVE}"}</customFields>
+            <customFields>{"app_name":"${APP_NAME}","env":"${SPRING_PROFILES}"}</customFields>
             <mdcKeyFieldName>requestId=request_id</mdcKeyFieldName>
             <!-- This 'fixes' double quote problem for elastic -->
             <jsonFactoryDecorator class="net.logstash.logback.decorate.CharacterEscapesJsonFactoryDecorator">
@@ -23,7 +24,7 @@
             </jsonFactoryDecorator>
             <!-- This shortens extremely long stacktraces. Not always needed -->
             <throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
-                <maxDepthPerThrowable>60</maxDepthPerThrowable>
+                <maxDepthPerThrowable>30</maxDepthPerThrowable>
                 <maxLength>2048</maxLength>
                 <shortenedClassNameLength>100</shortenedClassNameLength>
                 <exclude>sun\.reflect\..*\.invoke.*</exclude>
@@ -35,7 +36,7 @@
     </appender>
 
     <root level="INFO">
-        <springProfile name="local,test">
+        <springProfile name="test">
             <appender-ref ref="CONSOLE" />
         </springProfile>
         <springProfile name="dev,qa,uat,prod">

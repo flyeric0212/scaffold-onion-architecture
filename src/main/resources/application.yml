@@ -3,7 +3,7 @@ spring:
     name: example-service
 
   profiles:
-    active: local
+    active: dev
 
 #  flyway:
 #    enabled: true
