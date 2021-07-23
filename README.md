@@ -27,7 +27,7 @@ gradle wrapper --gradle-version 7.1.1
 
 Onion Architecture 架构图：
 
-<img src="https://pic-bed-1256249917.cos.ap-chengdu.myqcloud.com/uPic/4436217-kolka-20210722231755720-20210723125016960.png" alt="img" style="zoom: 80%;" />
+<img src="https://pic-bed-1256249917.cos.ap-chengdu.myqcloud.com/uPic/4436217-kolka-20210722231755720-20210723125016960.png" alt="img" style="zoom: 67%;" />
 
 ### 分层结构
 
