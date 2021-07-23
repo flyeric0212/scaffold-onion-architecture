@@ -1,27 +1,22 @@
 package top.flyeric.archtest;
 
-import static com.tngtech.archunit.library.Architectures.layeredArchitecture;
-
 import com.tngtech.archunit.junit.AnalyzeClasses;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
+import com.tngtech.archunit.library.Architectures;
 
-@AnalyzeClasses(packages = "top.flyeric")
+@AnalyzeClasses(packages = LayeredArchitectureTest.PACKAGE)
 public class LayeredArchitectureTest {
 
+    public static final String PACKAGE = "top.flyeric";
+
     @ArchTest
-    public static final ArchRule layer_dependencies_are_respected = layeredArchitecture()
-
-            .optionalLayer("Presentation").definedBy("top.flyeric.presentation..")
-            .optionalLayer("Application").definedBy("top.flyeric.application..")
-            .optionalLayer("Domain").definedBy("top.flyeric.domain..")
-            .optionalLayer("Infrastructure").definedBy("top.flyeric.infrastructure..")
-            .optionalLayer("Common").definedBy("top.flyeric.common..")
-
-            .whereLayer("Presentation").mayNotBeAccessedByAnyLayer()
-            .whereLayer("Application").mayOnlyBeAccessedByLayers("Presentation")
-            .whereLayer("Domain").mayOnlyBeAccessedByLayers("Application", "Infrastructure")
-            // TODO: fixme
-            .whereLayer("Infrastructure").mayOnlyBeAccessedByLayers("Presentation");
-
+    static final ArchRule onion_dependencies_are_respected = Architectures
+            .onionArchitecture()
+            .domainModels("..domain.model..")
+            .domainServices("..domain.service..")
+            .applicationServices("..application..")
+            .adapter("infra", "..infrastructure..")
+            .adapter("rest", "..presentation..")
+            .withOptionalLayers(true);
 }
