@@ -26,7 +26,13 @@ gradle wrapper --gradle-version 7.1.1
 * [ArchUnit Onion Architecture](https://www.archunit.org/userguide/html/000_Index.html#_architectures)
 
 Onion Architecture 架构图：
-![img](https://pic-bed-1256249917.cos.ap-chengdu.myqcloud.com/uPic/4436217-kolka-20210722231755720.png)
+
+<img src="https://pic-bed-1256249917.cos.ap-chengdu.myqcloud.com/uPic/4436217-kolka-20210722231755720-20210723125016960.png" alt="img" style="zoom: 80%;" />
+
+### 分层结构
+
+![Clean Architecture](https://pic-bed-1256249917.cos.ap-chengdu.myqcloud.com/uPic/Clean%20Architecture.png)
+
 
 package分层调用关系如下：
 ```
@@ -40,6 +46,7 @@ Architectures.LayeredArchitecture layeredArchitectureDelegate = layeredArchitect
         .whereLayer(APPLICATION_SERVICE_LAYER).mayOnlyBeAccessedByLayers(ADAPTER_LAYER)
         .withOptionalLayers(optionalLayers);    
 ```
+
 主要是为了隔离代码的传播，实现高内聚低耦合。
 
 测试策略和结构参考:

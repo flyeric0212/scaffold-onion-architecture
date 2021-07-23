@@ -1,4 +1,4 @@
-package top.flyeric.presentation;
+package top.flyeric.presentation.facade;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
