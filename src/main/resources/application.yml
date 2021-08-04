@@ -3,12 +3,12 @@ spring:
     name: example-service
 
   profiles:
-    active: dev
+    active: local
 
-#  flyway:
-#    enabled: true
-#    locations: classpath:/db/migration
-#    out-of-order: true
+  flyway:
+    enabled: true
+    locations: classpath:/db/migration
+    out-of-order: true
 
 server:
   port: 8080
@@ -24,3 +24,7 @@ management:
     health:
       probes:
         enabled: true
+
+jasypt:
+  encryptor:
+    password: ${JASYPT_ENCRYPTOR_PASSWORD:abc!23}
