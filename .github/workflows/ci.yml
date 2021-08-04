@@ -68,13 +68,13 @@ jobs:
     - name: Set Image Tag
       run: echo "IMAGE_TAG=$(date +'%Y-%m-%d-%H%M%S')-${GITHUB_REF##*/}" >> $GITHUB_ENV
 
-    - name: Build Docker image
-      run: |
-       docker build -t ${DOCKER_IMAGE_URL}:${IMAGE_TAG} .
-
     - name: Login Docker Registry
       run: |
         docker login -u ${{ secrets.DOCKER_REGISTRY_ACCOUNT }} -p ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
+
+    - name: Build Docker image
+      run: |
+        docker build -t ${DOCKER_IMAGE_URL}:${IMAGE_TAG} .
 
     - name: Publish Image
       run: |
