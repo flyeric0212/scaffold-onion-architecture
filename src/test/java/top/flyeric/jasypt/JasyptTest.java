@@ -1,11 +1,12 @@
 package top.flyeric.jasypt;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import com.ulisesbocchio.jasyptspringboot.configuration.StringEncryptorBuilder;
 import com.ulisesbocchio.jasyptspringboot.properties.JasyptEncryptorConfigurationProperties;
+
 import org.jasypt.encryption.StringEncryptor;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class JasyptTest {
 

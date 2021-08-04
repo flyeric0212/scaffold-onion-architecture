@@ -2,9 +2,7 @@ package top.flyeric;
 
 import org.junit.Test;
 
-import top.flyeric.base.ApiTestBase;
-
-public class EmptyIntTest extends ApiTestBase {
+public class EmptyIntTest {
 
     @Test
     public void emptyIntTest() {
