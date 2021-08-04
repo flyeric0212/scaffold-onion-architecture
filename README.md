@@ -1,7 +1,6 @@
 # scaffold-clean-architecture
 
 ## 初始化
-
 ```
 gradle init
 gradle wrapper --gradle-version 7.1.1
@@ -15,7 +14,6 @@ gradle wrapper --gradle-version 7.1.1
 - Database Access - Spring Data JPA
 - Database Migration - Flyway
 
-
 ## 架构和代码结构
 本项目代码结构参考 Onion Architecture，参考以下介绍:
 * [The Onion Architecture : part 1](https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/)
@@ -27,7 +25,7 @@ gradle wrapper --gradle-version 7.1.1
 
 Onion Architecture 架构图：
 
-<img src="https://pic-bed-1256249917.cos.ap-chengdu.myqcloud.com/uPic/4436217-kolka-20210722231755720-20210723125016960.png" alt="img" style="zoom: 67%;" />
+<img src="https://pic-bed-1256249917.cos.ap-chengdu.myqcloud.com/uPic/4436217-kolka-20210722231755720-20210723125016960.png" alt="img" style="zoom: 60%;" />
 
 ### 分层结构
 
