@@ -30,7 +30,6 @@ repositories {
         }
         url 'https://packages.aliyun.com/maven/repository/2006205-release-klNaKw/'
     }
-
     maven {
         credentials {
             username "${ALIYUN_MAVEN_USER}"
