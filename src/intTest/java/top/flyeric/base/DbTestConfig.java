@@ -8,6 +8,7 @@ import org.dbunit.ext.mysql.MySqlDataTypeFactory;
 import org.dbunit.ext.mysql.MySqlMetadataHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 
 import javax.sql.DataSource;
@@ -15,7 +16,7 @@ import javax.sql.DataSource;
 import groovy.util.logging.Slf4j;
 
 @Slf4j
-// @TestConfiguration
+@TestConfiguration
 public class DbTestConfig {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DbTestConfig.class);
@@ -37,7 +38,7 @@ public class DbTestConfig {
         configBean.setMetadataHandler(new MySqlMetadataHandler());
         configBean.setCaseSensitiveTableNames(true);
         factoryBean.setDatabaseConfig(configBean);
-        factoryBean.setSchema("example"); // #changeme
+        factoryBean.setSchema("example_db"); // ## <changeme>
         try {
             return factoryBean.getObject();
         } catch (Exception exception) {

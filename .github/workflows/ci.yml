@@ -17,12 +17,32 @@ env:
 
 jobs:
    ci-tasks:
-
     name: Setup, Build, and Publish
     runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0.26
+        env:
+          MYSQL_DATABASE: example_db
+          MYSQL_ROOT_PASSWORD: password
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 3
+      redis:
+        image: redis:6.2.5
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 3
+        ports:
+          - 6379:6379
 
     steps:
-
     - name: Checkout
       uses: actions/checkout@v2
 
