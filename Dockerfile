@@ -1,9 +1,4 @@
-FROM adoptopenjdk/openjdk11:jre-11.0.9_11-alpine
-
-# 设置时区
-RUN apk add tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-    && echo "Asia/Shanghai" > /etc/timezone \
-    && apk del tzdata
+FROM amuguelove/adoptopenjdk:11-jre-alpine-apm-agent-1-25
 
 COPY build/libs/*-SNAPSHOT.jar /opt/app.jar
 
