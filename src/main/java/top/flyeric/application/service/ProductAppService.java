@@ -1,11 +1,13 @@
 package top.flyeric.application.service;
 
 import com.querydsl.core.types.Predicate;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 import top.flyeric.domain.model.product.entity.Product;
-import top.flyeric.domain.service.ProductService;
+import top.flyeric.domain.model.product.service.ProductService;
 
 @Service
 public class ProductAppService {

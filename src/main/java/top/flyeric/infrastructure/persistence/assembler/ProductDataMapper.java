@@ -3,6 +3,7 @@ package top.flyeric.infrastructure.persistence.assembler;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
+
 import top.flyeric.domain.model.product.entity.Product;
 import top.flyeric.infrastructure.persistence.entity.ProductPo;
 

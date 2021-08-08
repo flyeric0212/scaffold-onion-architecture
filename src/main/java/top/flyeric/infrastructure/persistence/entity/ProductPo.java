@@ -1,15 +1,16 @@
 package top.flyeric.infrastructure.persistence.entity;
 
+import java.math.BigDecimal;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import top.flyeric.base.jpa.entity.BaseEntity;
-
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import java.math.BigDecimal;
 
 @Getter
 @Setter

@@ -25,6 +25,15 @@ management:
       probes:
         enabled: true
 
+logging:
+  config: classpath:${SPRING_CONFIG_FILE:logback-spring.xml}
+
 jasypt:
   encryptor:
     password: ${JASYPT_ENCRYPTOR_PASSWORD:abc!23}
+
+gateways:
+  weather:
+    host: http://t.weather.itboy.net/api/weather/city/101270101
+    connectTimeout: 5000
+    readTimeout: 5000

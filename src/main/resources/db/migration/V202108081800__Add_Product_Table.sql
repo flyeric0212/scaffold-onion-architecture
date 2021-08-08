@@ -8,5 +8,5 @@ CREATE TABLE IF NOT EXISTS `product` (
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
-INSERT INTO `product` ('1', 'iphone 12 pro max', 'apple iphone', 9600.00, '2021-08-08 18:00:00', '2021-08-08 18:00:00');
-INSERT INTO `product` ('2', 'ipad pro 11', 'apple ipad', 6500.00, '2021-08-08 18:00:00', '2021-08-08 18:00:00');
+INSERT INTO `product` VALUES ('1', 'iphone 12 pro max', 'apple iphone', 9600.00, now(), now());
+INSERT INTO `product` VALUES ('2', 'ipad pro 11', 'apple ipad', 6500.00, now(), now());

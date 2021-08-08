@@ -36,10 +36,10 @@
     </appender>
 
     <root level="INFO">
-        <springProfile name="test">
+        <springProfile name="local,test">
             <appender-ref ref="CONSOLE" />
         </springProfile>
-        <springProfile name="dev,qa,uat,prod">
+        <springProfile name="dev,qa,prod">
             <appender-ref ref="JSON_CONSOLE"/>
         </springProfile>
     </root>
