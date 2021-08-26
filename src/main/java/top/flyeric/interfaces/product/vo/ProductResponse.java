@@ -1,4 +1,4 @@
-package top.flyeric.presentation.vo;
+package top.flyeric.interfaces.product.vo;
 
 import java.math.BigDecimal;
 

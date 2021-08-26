@@ -1,8 +1,6 @@
-package top.flyeric.presentation.facade;
+package top.flyeric.interfaces.product.web;
 
-
-
-import static top.flyeric.presentation.assembler.ProductVoMapper.MAPPER;
+import static top.flyeric.interfaces.product.assembler.ProductVoMapper.MAPPER;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,20 +25,20 @@ import top.flyeric.application.service.ProductAppService;
 import top.flyeric.domain.model.product.entity.Product;
 import top.flyeric.domain.model.weather.adapter.WeatherAdapter;
 import top.flyeric.domain.model.weather.entity.Weather;
-import top.flyeric.presentation.vo.ProductResponse;
-import top.flyeric.presentation.vo.QueryProductRequest;
+import top.flyeric.interfaces.product.vo.ProductResponse;
+import top.flyeric.interfaces.product.vo.QueryProductRequest;
 
 @Slf4j
 @RestController
 @RequestMapping()
-public class ExampleController {
+public class ProductController {
 
     private final ProductAppService productAppService;
     private final StringRedisTemplate stringRedisTemplate;
     private final ObjectMapper objectMapper;
     private final WeatherAdapter weatherAdapter;
 
-    public ExampleController(ProductAppService productAppService,
+    public ProductController(ProductAppService productAppService,
                              StringRedisTemplate stringRedisTemplate,
                              ObjectMapper objectMapper,
                              WeatherAdapter weatherAdapter) {
@@ -49,7 +47,6 @@ public class ExampleController {
         this.objectMapper = objectMapper;
         this.weatherAdapter = weatherAdapter;
     }
-
 
     @ApiOperation("测试Swagger API文档")
     @GetMapping("/say-hello")

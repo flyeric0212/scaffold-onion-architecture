@@ -1,4 +1,4 @@
-# scaffold-clean-architecture
+# scaffold-onion-architecture
 
 ## 初始化
 ```
@@ -23,14 +23,9 @@ gradle wrapper --gradle-version 7.1.1
 
 * [ArchUnit Onion Architecture](https://www.archunit.org/userguide/html/000_Index.html#_architectures)
 
-Onion Architecture 架构图：
+### 分层结构详细说明
 
-<img src="https://pic-bed-1256249917.cos.ap-chengdu.myqcloud.com/uPic/4436217-kolka-20210722231755720-20210723125016960.png" alt="img" style="zoom: 60%;" />
-
-### 分层结构
-
-![Clean Architecture](https://pic-bed-1256249917.cos.ap-chengdu.myqcloud.com/uPic/Clean%20Architecture.png)
-
+![image-20210826232336607](https://pic-bed-1256249917.cos.ap-chengdu.myqcloud.com/uPic/image-20210826232336607.png)
 
 package分层调用关系如下：
 ```

@@ -1,11 +1,11 @@
-package top.flyeric.presentation.assembler;
+package top.flyeric.interfaces.product.assembler;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
 import top.flyeric.domain.model.product.entity.Product;
-import top.flyeric.presentation.vo.ProductResponse;
+import top.flyeric.interfaces.product.vo.ProductResponse;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ProductVoMapper {
