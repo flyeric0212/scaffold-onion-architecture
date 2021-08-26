@@ -25,7 +25,7 @@ gradle wrapper --gradle-version 7.1.1
 
 ### 分层结构详细说明
 
-![image-20210826232336607](https://pic-bed-1256249917.cos.ap-chengdu.myqcloud.com/uPic/image-20210826232336607.png)
+![image-20210826233554951](https://pic-bed-1256249917.cos.ap-chengdu.myqcloud.com/uPic/image-20210826233554951.png)
 
 package分层调用关系如下：
 ```
