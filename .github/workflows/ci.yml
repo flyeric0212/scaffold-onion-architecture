@@ -65,9 +65,13 @@ jobs:
 #    - name: Build with gradle
 #      run: ./gradlew clean build -PALIYUN_MAVEN_USER=${{ secrets.ALIYUN_MAVEN_USER}} -PALIYUN_MAVEN_PASSWORD=${{ secrets.ALIYUN_MAVEN_PASSWORD}}
 #
-    - name: Set image tag
-      run: echo "IMAGE_TAG=$(date +'%Y-%m-%d-%H%M%S')-${GITHUB_REF##*/}" >> $GITHUB_ENV
-#
+#    - name: Set image tag
+#      run: echo "IMAGE_TAG=$(date +'%Y-%m-%d-%H%M%S')-${GITHUB_REF##*/}" >> $GITHUB_ENV
+
+    - name: Define variables
+      run: |
+        echo ::set-env name=IMAGE_TAG::$(echo "$(date +'%Y-%m-%d-%H%M%S')-${GITHUB_REF##*/}")
+
 #    - name: Container build and push to Docker Registry
 #      run: |
 #        docker login -u ${{ secrets.DOCKER_REGISTRY_ACCOUNT }} -p ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
