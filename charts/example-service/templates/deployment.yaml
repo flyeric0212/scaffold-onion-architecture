@@ -25,11 +25,11 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
         env:
           {{- range $name, $value := .Values.env.open }}
-            {{- if not (empty $value) }}
-            - name: {{ $name | quote }}
-              value: {{ $value | quote }}
-              {{- end }}
-              {{- end }}
+          {{- if not (empty $value) }}
+          - name: {{ $name | quote }}
+            value: {{ $value | quote }}
+            {{- end }}
+            {{- end }}
         livenessProbe:
 {{ toYaml .Values.livenessProbe | indent 12 }}
         readinessProbe:
