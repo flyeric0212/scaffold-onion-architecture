@@ -90,5 +90,5 @@ jobs:
     - name: Helm deploy to dev
       uses: WyriHaximus/github-action-helm3@v2
       with:
-        exec: helm upgrade --install example-service ./charts/example-service --set env.open.SPRING_PROFILES_ACTIVE=dev --set image.tag=${IMAGE_TAG}
+        exec: helm upgrade --install example-service ./charts/example-service -n dev --set env.open.SPRING_PROFILES_ACTIVE=dev --set image.tag=${IMAGE_TAG}
         kubeconfig: '${{ secrets.KUBECONFIG }}'
