@@ -16,9 +16,9 @@ env:
   DOCKER_IMAGE_URL: docker.io/amuguelove/example-service
 
 jobs:
-#  build:
-#    name: Build & Publish artifact
-#    runs-on: ubuntu-latest
+  build:
+    name: Build & Publish artifact
+    runs-on: ubuntu-latest
 #    services:
 #      mysql:
 #        image: mysql:8.0.26
@@ -65,8 +65,8 @@ jobs:
 #    - name: Build with gradle
 #      run: ./gradlew clean build -PALIYUN_MAVEN_USER=${{ secrets.ALIYUN_MAVEN_USER}} -PALIYUN_MAVEN_PASSWORD=${{ secrets.ALIYUN_MAVEN_PASSWORD}}
 #
-#    - name: Set image tag
-#      run: echo "IMAGE_TAG=$(date +'%Y-%m-%d-%H%M%S')-${GITHUB_REF##*/}" >> $GITHUB_ENV
+    - name: Set image tag
+      run: echo "IMAGE_TAG=$(date +'%Y-%m-%d-%H%M%S')-${GITHUB_REF##*/}" >> $GITHUB_ENV
 #
 #    - name: Container build and push to Docker Registry
 #      run: |
@@ -77,7 +77,7 @@ jobs:
   helm-deploy:
     name: Helm lint & deploy
     runs-on: ubuntu-latest
-#    needs: build
+    needs: build
 
     steps:
     - uses: actions/checkout@v2
@@ -90,5 +90,5 @@ jobs:
     - name: Helm deploy to dev
       uses: WyriHaximus/github-action-helm3@v2
       with:
-        exec: helm upgrade --install example-service ./charts/example-service -n dev --set env.open.SPRING_PROFILES_ACTIVE=dev --set image.tag=2021-08-31-221938-master --dry-run
+        exec: helm upgrade --install example-service ./charts/example-service -n dev --set env.open.SPRING_PROFILES_ACTIVE=dev --set image.tag=${IMAGE_TAG} --dry-run
         kubeconfig: '${{ secrets.KUBECONFIG }}'
