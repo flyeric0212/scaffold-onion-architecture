@@ -92,6 +92,10 @@ jobs:
       with:
         exec: helm lint ./charts/example-service
 
+    - name: echo
+      run: |
+        echo ${IMAGE_TAG}
+
     - name: Helm deploy to dev
       uses: WyriHaximus/github-action-helm3@v2
       with:
