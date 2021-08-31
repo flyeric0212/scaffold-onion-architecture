@@ -70,7 +70,7 @@ jobs:
 
     - name: Define variables
       run: |
-        echo ::set-env name=IMAGE_TAG::$(echo "$(date +'%Y-%m-%d-%H%M%S')-${GITHUB_REF##*/}")
+        echo ::set-env name=IMAGE_TAG::$(date +'%Y-%m-%d-%H%M%S')-${GITHUB_REF##*/}
 
 #    - name: Container build and push to Docker Registry
 #      run: |
