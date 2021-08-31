@@ -1,7 +1,7 @@
 # This workflow will build a Java project with Gradle
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
 
-name: CI Actions
+name: Github Actions
 
 on:
   push:
@@ -16,8 +16,8 @@ env:
   DOCKER_IMAGE_URL: docker.io/amuguelove/example-service
 
 jobs:
-   ci-tasks:
-    name: Setup, Build, and Publish
+   build:
+    name: Build & Publish artifact
     runs-on: ubuntu-latest
     services:
       mysql:
@@ -52,7 +52,7 @@ jobs:
         java-version: '11' # The OpenJDK version to make available on the path
         architecture: 'x64' # defaults to 'x64'
 
-    - name: Cache Gradle packages
+    - name: Cache gradle packages
       uses: actions/cache@v2
       with:
         path: ~/.gradle/caches
@@ -62,20 +62,33 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
-    - name: Build with Gradle
+    - name: Build with gradle
       run: ./gradlew clean build -PALIYUN_MAVEN_USER=${{ secrets.ALIYUN_MAVEN_USER}} -PALIYUN_MAVEN_PASSWORD=${{ secrets.ALIYUN_MAVEN_PASSWORD}}
 
-    - name: Set Image Tag
+    - name: Set image tag
       run: echo "IMAGE_TAG=$(date +'%Y-%m-%d-%H%M%S')-${GITHUB_REF##*/}" >> $GITHUB_ENV
 
-    - name: Login Docker Registry
+    - name: Container build and push to Docker Registry
       run: |
         docker login -u ${{ secrets.DOCKER_REGISTRY_ACCOUNT }} -p ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
-
-    - name: Build Docker image
-      run: |
         docker build -t ${DOCKER_IMAGE_URL}:${IMAGE_TAG} .
-
-    - name: Publish Image
-      run: |
         docker push ${DOCKER_IMAGE_URL}:${IMAGE_TAG}
+
+   helm-deploy:
+     name: Helm lint & deploy
+     runs-on: ubuntu-latest
+     needs: build
+
+     steps:
+       - uses: actions/checkout@v2
+
+       - name: Helm Lint
+        uses: WyriHaximus/github-action-helm3@v2
+        with:
+          exec: helm lint ./charts/example-service
+
+       - name: Helm deploy to dev
+         uses: WyriHaximus/github-action-helm3@v2
+         with:
+           exec: helm upgrade --install example-service ./charts/example-service --set env.open.SPRING_PROFILES_ACTIVE=dev --set image.tag=${IMAGE_TAG}
+           kubeconfig: '${{ secrets.KUBECONFIG }}'

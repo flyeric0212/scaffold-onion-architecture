@@ -13,7 +13,6 @@
                 <version>[ignore]</version>
                 <levelValue>[ignore]</levelValue>
             </fieldNames>
-            <!-- <customFields>{"app_name":"${APP_NAME}","env":"${SPRING_PROFILES}"}</customFields> -->
             <mdcKeyFieldName>requestId=request_id</mdcKeyFieldName>
             <!-- This 'fixes' double quote problem for elastic -->
             <jsonFactoryDecorator class="net.logstash.logback.decorate.CharacterEscapesJsonFactoryDecorator">

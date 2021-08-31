@@ -1,0 +1,18 @@
+{{- if .Values.metrics.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.metrics.name }}
+  labels:
+    prometheus.io/scrape: "true"
+    prometheus.io/type: "jvm"
+spec:
+  type: {{ .Values.metrics.type }}
+  ports:
+    - port: {{ .Values.metrics.port }}
+      targetPort: {{ .Values.metrics.targetPort }}
+      protocol: TCP
+      name: metrics
+  selector:
+{{ include "labels.match" . | indent 4 }}
+{{- end }}

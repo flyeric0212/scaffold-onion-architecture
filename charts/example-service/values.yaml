@@ -1,0 +1,77 @@
+
+#nameOverride:
+#fullnameOverride:
+#namespaceOverride:
+
+replicaCount: 1
+
+image:
+  repository: docker.io/amuguelove/example-service
+  tag: latest
+  pullPolicy: IfNotPresent
+#  pullSecrets:
+#    - docker-config-secret
+
+deploymentStrategy:
+  rollingUpdate:
+    maxSurge: 1
+    maxUnavailable: 0
+  type: RollingUpdate
+
+env:
+  open:
+    SPRING_PROFILES_ACTIVE: dev
+    JAVA_TOOL_OPTIONS: " -Xms512m -Xmx1024m "
+    APP_NAME: "example-service"
+    LOGBACK_CONFIG_FILE: "logback-spring.xml"
+
+service:
+  enabled: true
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+  name: example-service
+
+metrics:
+  enabled: true
+  type: ClusterIP
+  port: 8081
+  targetPort: 8081
+  name: example-service-metrics
+
+ingress:
+  enabled: false
+  annotations: {}
+  host: example-service.flyeric.top
+
+resources:
+  limits:
+    # cpu: 100m
+    memory: 2G
+  requests:
+    # cpu: 100m
+    memory: 256Mi
+
+livenessProbe:
+  httpGet:
+    path: /actuator/health/liveness
+    port: 8081
+  initialDelaySeconds: 30
+  periodSeconds: 20
+  timeoutSeconds: 5
+  failureThreshold: 3
+
+readinessProbe:
+  httpGet:
+    path: /actuator/health/readiness
+    port: 8081
+  initialDelaySeconds: 15
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 6
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
