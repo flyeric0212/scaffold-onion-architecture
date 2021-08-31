@@ -3,8 +3,8 @@
     <include resource="org/springframework/boot/logging/logback/defaults.xml" />
     <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
 
-    <springProperty scope="context" name="APP_NAME" source="spring.application.name"/>
-    <springProperty scope="context" name="SPRING_PROFILES" source="spring.profiles.active"/>
+    <springProperty scope="context" name="app_name" source="spring.application.name"/>
+    <springProperty scope="context" name="env" source="spring.profiles.active"/>
 
     <appender name="JSON_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="net.logstash.logback.encoder.LogstashEncoder">
