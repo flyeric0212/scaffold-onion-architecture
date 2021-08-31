@@ -24,9 +24,12 @@ spec:
         image: {{ template "example-service.image" . }}
         imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
         env:
-          - name: "SPRING_PROFILES_ACTIVE"
-            value: {{.Values.spring.profile}}
-{{ toYaml .Values.env | indent 10 }}
+          {{- range $name, $value := .Values.env.open }}
+          {{- if not (empty $value) }}
+          - name: {{ $name | quote }}
+            value: {{ $value | quote }}
+            {{- end }}
+            {{- end }}
         livenessProbe:
 {{ toYaml .Values.livenessProbe | indent 12 }}
         readinessProbe:

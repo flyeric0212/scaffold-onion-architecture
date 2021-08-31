@@ -19,15 +19,11 @@ deploymentStrategy:
   type: RollingUpdate
 
 env:
-  - name: "JAVA_TOOL_OPTIONS"
-    value: " -Xms512m -Xmx1024m "
-  - name: "APP_NAME"
-    value: "example-service"
-  - name: "SPRING_CONFIG_FILE"
-    value: "logback-spring.xml"
-
-spring:
-  profile: dev
+  open:
+    SPRING_PROFILES_ACTIVE: dev
+    JAVA_TOOL_OPTIONS: " -Xms512m -Xmx1024m "
+    APP_NAME: "example-service"
+    LOGBACK_CONFIG_FILE: "logback-spring.xml"
 
 service:
   enabled: true
