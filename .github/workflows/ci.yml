@@ -14,7 +14,7 @@ on:
 env:
   TZ: Asia/Shanghai
   DOCKER_IMAGE_URL: docker.io/amuguelove/example-service
-  IMAGE_TAG: ${{ (date +'%Y-%m-%d-%H%M%S') }}
+  IMAGE_TAG: (date +'%Y-%m-%d-%H%M%S')
 
 jobs:
 #  build:
@@ -95,5 +95,5 @@ jobs:
     - name: Helm deploy to dev
       uses: WyriHaximus/github-action-helm3@v2
       with:
-        exec: helm upgrade --install example-service ./charts/example-service -n dev --set env.open.SPRING_PROFILES_ACTIVE=dev --set image.tag=${IMAGE_TAG} --dry-run
+        exec: helm upgrade --install example-service ./charts/example-service -n dev --set env.open.SPRING_PROFILES_ACTIVE=dev --set image.tag=123 --dry-run
         kubeconfig: '${{ secrets.KUBECONFIG }}'
