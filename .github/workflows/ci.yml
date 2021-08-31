@@ -14,7 +14,7 @@ on:
 env:
   TZ: Asia/Shanghai
   DOCKER_IMAGE_URL: docker.io/amuguelove/example-service
-  IMAGE_TAG: $(date +'%Y-%m-%d-%H%M%S')-${GITHUB_REF##*/}
+  IMAGE_TAG: $(date +'%Y-%m-%d-%H%M%S')
 
 jobs:
 #  build:
