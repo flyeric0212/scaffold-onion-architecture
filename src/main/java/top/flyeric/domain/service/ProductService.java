@@ -1,4 +1,4 @@
-package top.flyeric.domain.model.product.service;
+package top.flyeric.domain.service;
 
 import com.querydsl.core.types.Predicate;
 

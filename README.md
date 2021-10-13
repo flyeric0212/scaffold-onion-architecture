@@ -25,9 +25,11 @@ gradle wrapper --gradle-version 7.1.1
 
 ### 分层结构详细说明
 
-![image-20210826233554951](https://pic-bed-1256249917.cos.ap-chengdu.myqcloud.com/uPic/image-20210826233554951.png)
+![image-20211013181013502](https://pic-bed-1256249917.cos.ap-chengdu.myqcloud.com/uPic/image-20211013181013502.png)
+
 
 package分层调用关系如下：
+
 ```
 Architectures.LayeredArchitecture layeredArchitectureDelegate = layeredArchitecture()
         .layer(DOMAIN_MODEL_LAYER).definedBy(domainModelPackageIdentifiers)

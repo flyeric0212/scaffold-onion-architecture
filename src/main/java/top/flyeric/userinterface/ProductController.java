@@ -1,6 +1,6 @@
-package top.flyeric.interfaces.product.web;
+package top.flyeric.userinterface;
 
-import static top.flyeric.interfaces.product.assembler.ProductVoMapper.MAPPER;
+import static top.flyeric.userinterface.assembler.ProductVoMapper.MAPPER;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,28 +21,28 @@ import javax.validation.Valid;
 
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import top.flyeric.application.service.ProductAppService;
+import top.flyeric.application.service.ProductApplicationService;
 import top.flyeric.domain.model.product.entity.Product;
 import top.flyeric.domain.model.weather.adapter.WeatherAdapter;
 import top.flyeric.domain.model.weather.entity.Weather;
-import top.flyeric.interfaces.product.vo.ProductResponse;
-import top.flyeric.interfaces.product.vo.QueryProductRequest;
+import top.flyeric.userinterface.vo.ProductResponse;
+import top.flyeric.userinterface.vo.QueryProductRequest;
 
 @Slf4j
 @RestController
 @RequestMapping()
 public class ProductController {
 
-    private final ProductAppService productAppService;
+    private final ProductApplicationService productApplicationService;
     private final StringRedisTemplate stringRedisTemplate;
     private final ObjectMapper objectMapper;
     private final WeatherAdapter weatherAdapter;
 
-    public ProductController(ProductAppService productAppService,
+    public ProductController(ProductApplicationService productApplicationService,
                              StringRedisTemplate stringRedisTemplate,
                              ObjectMapper objectMapper,
                              WeatherAdapter weatherAdapter) {
-        this.productAppService = productAppService;
+        this.productApplicationService = productApplicationService;
         this.stringRedisTemplate = stringRedisTemplate;
         this.objectMapper = objectMapper;
         this.weatherAdapter = weatherAdapter;
@@ -59,7 +59,7 @@ public class ProductController {
             sort = "updateTime", direction = Sort.Direction.DESC) Pageable pageable,
                                          @Valid QueryProductRequest request) throws JsonProcessingException {
         // test db
-        Page<Product> pagedProducts = productAppService.getPagedProducts(request.toPredicates(),
+        Page<Product> pagedProducts = productApplicationService.getPagedProducts(request.toPredicates(),
                 pageable);
 
         // test redis

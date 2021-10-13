@@ -7,14 +7,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import top.flyeric.domain.model.product.entity.Product;
-import top.flyeric.domain.model.product.service.ProductService;
+import top.flyeric.domain.service.ProductService;
 
 @Service
-public class ProductAppService {
+public class ProductApplicationService {
 
     private final ProductService productService;
 
-    public ProductAppService(ProductService productService) {
+    public ProductApplicationService(ProductService productService) {
         this.productService = productService;
     }
 

@@ -17,6 +17,6 @@ public class LayeredArchitectureTest {
             .domainServices("..domain.service..")
             .applicationServices("..application..")
             .adapter("infrastructure", "..infrastructure..")
-            .adapter("interfaces", "..interfaces..")
+            .adapter("userinterface", "..userinterface..")
             .withOptionalLayers(true);
 }

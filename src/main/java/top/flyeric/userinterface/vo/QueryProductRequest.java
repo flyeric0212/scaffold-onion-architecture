@@ -1,4 +1,4 @@
-package top.flyeric.interfaces.product.vo;
+package top.flyeric.userinterface.vo;
 
 import com.google.common.collect.ImmutableList;
 import com.querydsl.core.types.Predicate;
