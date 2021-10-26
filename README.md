@@ -1,20 +1,26 @@
-# scaffold-onion-architecture
+# 洋葱架构脚手架项目
 
-## 初始化
-```
-gradle init
-gradle wrapper --gradle-version 7.1.1
-```
-
+- [洋葱架构脚手架项目](#洋葱架构脚手架项目)
+  - [技术栈](#技术栈)
+  - [架构说明](#架构说明)
+  - [分层结构说明](#分层结构说明)
+  - [本地构建](#本地构建)
+    - [启动依赖](#启动依赖)
+    - [编译](#编译)
+    - [运行](#运行)
+    - [修复代码格式](#修复代码格式)
+  - [其他](#其他)
+    - [Github Actions CI流水线](#Github Actions CI流水线)
 ## 技术栈
 
 - JDK 11
-- Gradle 7.1.1
-- Spring Boot 2.5.2
+- Gradle 7.2
+- Spring Boot 2.5.6
 - Database Access - Spring Data JPA
 - Database Migration - Flyway
+- Integration Test - Docker Compose
 
-## 架构和代码结构
+## 架构说明
 本项目代码结构参考 Onion Architecture，参考以下介绍:
 * [The Onion Architecture : part 1](https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/)
 * [The Onion Architecture : part 2](https://jeffreypalermo.com/2008/07/the-onion-architecture-part-2/)
@@ -23,13 +29,11 @@ gradle wrapper --gradle-version 7.1.1
 
 * [ArchUnit Onion Architecture](https://www.archunit.org/userguide/html/000_Index.html#_architectures)
 
-### 分层结构详细说明
+## 分层结构说明
 
 ![image-20211013181013502](https://pic-bed-1256249917.cos.ap-chengdu.myqcloud.com/uPic/image-20211013181013502.png)
 
-
 package分层调用关系如下：
-
 ```
 Architectures.LayeredArchitecture layeredArchitectureDelegate = layeredArchitecture()
         .layer(DOMAIN_MODEL_LAYER).definedBy(domainModelPackageIdentifiers)
@@ -41,7 +45,6 @@ Architectures.LayeredArchitecture layeredArchitectureDelegate = layeredArchitect
         .whereLayer(APPLICATION_SERVICE_LAYER).mayOnlyBeAccessedByLayers(ADAPTER_LAYER)
         .withOptionalLayers(optionalLayers);    
 ```
-
 主要是为了隔离代码的传播，实现高内聚低耦合。
 
 测试策略和结构参考:
@@ -60,7 +63,7 @@ docker-compose up -d
 ./gradlew composeDown 
 ```
 
-### 本地
+### 编译
 ```
 ./gradlew clean build 
 
@@ -69,7 +72,7 @@ docker-compose up -d
 ./gradlew clean composeUp build composeDown
 ```
 
-### 本地运行
+### 运行
 ```
 ./gradlew bootRun
 ```
@@ -79,3 +82,6 @@ docker-compose up -d
 ./gradlew spotlessApply
 ```
 
+## 其他
+### Github Actions CI流水线
+参考.github/workflows下的ci.yaml文件
