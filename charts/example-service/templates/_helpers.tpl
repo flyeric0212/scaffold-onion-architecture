@@ -43,7 +43,7 @@ app: {{ .Chart.Name | quote }}
 chart: {{ template "example-service.chart" . }}
 release: {{ .Release.Name | quote }}
 heritage: {{ .Release.Service | quote }}
-group: "backend-service"
+group: "k8s-service"
 {{- end -}}
 
 {{- define "labels.match" -}}

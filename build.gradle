@@ -12,8 +12,8 @@ plugins {
     id "com.diffplug.spotless" version "5.17.0"
 }
 
-group = 'top.flyeric'
-version = '1.0.0-SNAPSHOT'
+group = "top.flyeric"
+version = "1.0.0-SNAPSHOT"
 
 sourceCompatibility = 11
 targetCompatibility = 11
@@ -28,27 +28,30 @@ repositories {
             username "${ALIYUN_MAVEN_USER}"
             password "${ALIYUN_MAVEN_PASSWORD}"
         }
-        url 'https://packages.aliyun.com/maven/repository/2006205-release-klNaKw/'
+        url "https://packages.aliyun.com/maven/repository/2006205-release-klNaKw/"
     }
     maven {
         credentials {
             username "${ALIYUN_MAVEN_USER}"
             password "${ALIYUN_MAVEN_PASSWORD}"
         }
-        url 'https://packages.aliyun.com/maven/repository/2006205-snapshot-niWcQo/'
+        url "https://packages.aliyun.com/maven/repository/2006205-snapshot-niWcQo/"
     }
 }
 
 ext {
-    lombokVersion = "1.18.20"
+    baseLibVersion = "1.0.10-SNAPSHOT"
+
+    lombokVersion = "1.18.22"
     mapstructVersion = "1.4.2.Final"
-    alibabaTTLVersion = "2.12.0"
-    guavaVersion = "30.0-jre"
-    queryDslVersion = "4.4.0"
-    archunitVersion = "0.20.0"
+    alibabaTTLVersion = "2.12.2"
+    guavaVersion = "31.0.1-jre"
+    queryDslVersion = "5.0.0"
+    archunitVersion = "0.21.0"
     restAssuredVersion = "4.4.0"
     commonsCollectionsVersion = "4.4"
-    jasyptSpringBootStarterVersion = "3.0.3"
+    commonLang3Version = "3.12.0"
+    jasyptSpringBootStarterVersion = "3.0.4"
 }
 
 apply from: "${rootProject.projectDir}/gradle/integration-test.gradle"
@@ -69,7 +72,7 @@ dependencies {
             "javax.annotation:javax.annotation-api:1.3.2"
     )
 
-    implementation("top.flyeric:base-lib:1.0.5-SNAPSHOT")
+    implementation("top.flyeric:base-lib:${baseLibVersion}")
 
     // springboot frameworks
     implementation("org.springframework.boot:spring-boot-starter-web")
@@ -81,7 +84,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-cache")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
 
-    implementation("org.apache.commons:commons-lang3")
+    implementation("org.apache.commons:commons-lang3:${commonLang3Version}")
     implementation("org.apache.commons:commons-collections4:${commonsCollectionsVersion}")
     implementation("org.mapstruct:mapstruct:${mapstructVersion}")
     implementation("com.google.guava:guava:${guavaVersion}")
@@ -97,7 +100,7 @@ dependencies {
     testImplementation("com.tngtech.archunit:archunit-junit5:${archunitVersion}")
     testImplementation("io.rest-assured:spring-mock-mvc:${restAssuredVersion}")
     testImplementation("com.github.springtestdbunit:spring-test-dbunit:1.3.0")
-    testImplementation("org.dbunit:dbunit:2.7.0")
+    testImplementation("org.dbunit:dbunit:2.7.2")
     testImplementation("org.jyaml:jyaml:1.3")
 }
 
