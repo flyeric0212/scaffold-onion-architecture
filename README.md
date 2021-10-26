@@ -10,7 +10,8 @@
     - [运行](#运行)
     - [修复代码格式](#修复代码格式)
   - [其他](#其他)
-    - [Github Actions CI流水线](#Github Actions CI流水线)
+    - [CI流水线](#CI流水线)
+
 ## 技术栈
 
 - JDK 11
@@ -83,5 +84,6 @@ docker-compose up -d
 ```
 
 ## 其他
-### Github Actions CI流水线
+
+### CI流水线
 参考.github/workflows下的ci.yaml文件
