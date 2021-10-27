@@ -1,7 +1,5 @@
 package top.flyeric.base;
 
-
-
 import com.github.springtestdbunit.TransactionDbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DbUnitConfiguration;
 
@@ -20,7 +18,7 @@ import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.config.ObjectMapperConfig;
 import io.restassured.config.RestAssuredConfig;
-import top.flyeric.base.config.JacksonConfiguration;
+import top.flyeric.base.webmvc.JacksonConfiguration;
 import top.flyeric.util.YamlDataSetLoader;
 
 @Import({DbTestConfig.class, SecurityConfig.class, MockConfig.class})
