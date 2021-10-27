@@ -21,7 +21,7 @@ deploymentStrategy:
 env:
   open:
     SPRING_PROFILES_ACTIVE: dev
-    JAVA_TOOL_OPTIONS: " -Xms512m -Xmx1024m "
+    JAVA_TOOL_OPTIONS: " -Xms256m -Xmx1024m "
     APP_NAME: "example-service"
     LOGBACK_CONFIG_FILE: "logback-spring.xml"
 
