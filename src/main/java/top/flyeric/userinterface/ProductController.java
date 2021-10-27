@@ -27,7 +27,6 @@ import top.flyeric.application.service.ProductApplicationService;
 import top.flyeric.domain.model.product.entity.Product;
 import top.flyeric.domain.model.weather.adapter.WeatherAdapter;
 import top.flyeric.domain.model.weather.entity.Weather;
-import top.flyeric.userinterface.vo.ProductResponse;
 import top.flyeric.userinterface.vo.QueryProductRequest;
 
 @Slf4j

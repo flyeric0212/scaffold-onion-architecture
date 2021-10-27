@@ -40,7 +40,7 @@ repositories {
 }
 
 ext {
-    baseLibVersion = "1.0.23-SNAPSHOT"
+    baseLibVersion = "1.0.25-SNAPSHOT"
     lombokVersion = "1.18.22"
     mapstructVersion = "1.4.2.Final"
     queryDslVersion = "4.4.0"
@@ -84,6 +84,8 @@ dependencies {
 
     // test frameworks
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("junit:junit:4.13.2")
+
     testImplementation("com.tngtech.archunit:archunit:${archunitVersion}")
     testImplementation("com.tngtech.archunit:archunit-junit5:${archunitVersion}")
     testImplementation("io.rest-assured:spring-mock-mvc:${restAssuredVersion}")
