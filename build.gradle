@@ -40,8 +40,7 @@ repositories {
 }
 
 ext {
-    baseLibVersion = "1.0.15-SNAPSHOT"
-
+    baseLibVersion = "1.0.23-SNAPSHOT"
     lombokVersion = "1.18.22"
     mapstructVersion = "1.4.2.Final"
     queryDslVersion = "4.4.0"
@@ -78,11 +77,12 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
     implementation("org.springframework.boot:spring-boot-starter-cache")
 
+    // mysql frameworks
     implementation("com.querydsl:querydsl-jpa:${queryDslVersion}")
-
     implementation("org.flywaydb:flyway-core")
     runtimeOnly("mysql:mysql-connector-java")
 
+    // test frameworks
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("com.tngtech.archunit:archunit:${archunitVersion}")
     testImplementation("com.tngtech.archunit:archunit-junit5:${archunitVersion}")

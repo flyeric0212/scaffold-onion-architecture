@@ -11,6 +11,7 @@
     - [修复代码格式](#修复代码格式)
   - [其他](#其他)
     - [CI流水线](#CI流水线)
+    - [Swagger访问地址](#Swagger访问地址)
 
 ## 技术栈
 
@@ -87,3 +88,7 @@ docker-compose up -d
 
 ### CI流水线
 参考.github/workflows下的ci.yaml文件
+
+### Swagger访问地址
+本地启动后，访问如下地址：
+http://localhost:8080/swagger-ui/
