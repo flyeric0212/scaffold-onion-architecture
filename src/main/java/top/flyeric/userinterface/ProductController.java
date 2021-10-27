@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import javax.validation.Valid;
@@ -49,15 +51,15 @@ public class ProductController {
     }
 
     @ApiOperation("测试Swagger API文档")
-    @GetMapping("/say-hello")
+    @GetMapping("/hello")
     public String sayHello() {
         return "hello " + LocalDateTime.now();
     }
 
     @GetMapping("/test")
-    public Page<ProductResponse> testApm(@SortDefault(
+    public Map testApm(@SortDefault(
             sort = "updateTime", direction = Sort.Direction.DESC) Pageable pageable,
-                                         @Valid QueryProductRequest request) throws JsonProcessingException {
+                       @Valid QueryProductRequest request) throws JsonProcessingException {
         // test db
         Page<Product> pagedProducts = productApplicationService.getPagedProducts(request.toPredicates(),
                 pageable);
@@ -70,6 +72,10 @@ public class ProductController {
         Weather todayWeather = weatherAdapter.getTodayWeather();
         log.info("today weather: {}", todayWeather);
 
-        return pagedProducts.map(MAPPER::toResponse);
+        Map result = new LinkedHashMap();
+        result.put("products", pagedProducts.map(MAPPER::toResponse));
+        result.put("todayWeather", todayWeather);
+
+        return result;
     }
 }

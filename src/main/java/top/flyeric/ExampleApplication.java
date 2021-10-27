@@ -20,14 +20,14 @@ public class ExampleApplication {
         SpringApplication.run(ExampleApplication.class, args);
     }
 
-    @Scheduled(fixedRate = 5000L)
-    public void sayHelloLog() {
-        log.info("hello, {}", LocalDateTime.now());
-    }
-
-    @Scheduled(fixedRate = 10000L)
-    public void throwExceptionLog() {
-        throw notFoundException(String.format("not found exception, %s", LocalDateTime.now())).get();
-    }
+//    @Scheduled(fixedRate = 5000L)
+//    public void sayHelloLog() {
+//        log.info("hello, {}", LocalDateTime.now());
+//    }
+//
+//    @Scheduled(fixedRate = 10000L)
+//    public void throwExceptionLog() {
+//        throw notFoundException(String.format("not found exception, %s", LocalDateTime.now())).get();
+//    }
 
 }

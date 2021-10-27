@@ -40,18 +40,13 @@ repositories {
 }
 
 ext {
-    baseLibVersion = "1.0.10-SNAPSHOT"
+    baseLibVersion = "1.0.15-SNAPSHOT"
 
     lombokVersion = "1.18.22"
     mapstructVersion = "1.4.2.Final"
-    alibabaTTLVersion = "2.12.2"
-    guavaVersion = "31.0.1-jre"
-    queryDslVersion = "5.0.0"
+    queryDslVersion = "4.4.0"
     archunitVersion = "0.21.0"
     restAssuredVersion = "4.4.0"
-    commonsCollectionsVersion = "4.4"
-    commonLang3Version = "3.12.0"
-    jasyptSpringBootStarterVersion = "3.0.4"
 }
 
 apply from: "${rootProject.projectDir}/gradle/integration-test.gradle"
@@ -63,8 +58,10 @@ apply from: "${rootProject.projectDir}/gradle/docker-compose.gradle"
 dependencies {
     compileOnly("org.projectlombok:lombok:${lombokVersion}")
     annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
+
     compileOnly("org.mapstruct:mapstruct-processor:${mapstructVersion}")
     annotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}")
+
     compileOnly("com.querydsl:querydsl-apt:${queryDslVersion}")
     annotationProcessor(
             "com.querydsl:querydsl-apt:${queryDslVersion}:jpa",
@@ -76,21 +73,12 @@ dependencies {
 
     // springboot frameworks
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.data:spring-data-commons")
-    implementation("org.springframework.boot:spring-boot-starter-logging")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
     implementation("org.springframework.boot:spring-boot-starter-cache")
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
 
-    implementation("org.apache.commons:commons-lang3:${commonLang3Version}")
-    implementation("org.apache.commons:commons-collections4:${commonsCollectionsVersion}")
-    implementation("org.mapstruct:mapstruct:${mapstructVersion}")
-    implementation("com.google.guava:guava:${guavaVersion}")
-    implementation("com.alibaba:transmittable-thread-local:${alibabaTTLVersion}")
     implementation("com.querydsl:querydsl-jpa:${queryDslVersion}")
-    implementation("com.github.ulisesbocchio:jasypt-spring-boot-starter:${jasyptSpringBootStarterVersion}")
 
     implementation("org.flywaydb:flyway-core")
     runtimeOnly("mysql:mysql-connector-java")
