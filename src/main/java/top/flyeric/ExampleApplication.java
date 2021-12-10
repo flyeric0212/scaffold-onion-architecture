@@ -25,5 +25,4 @@ public class ExampleApplication {
     // public void throwExceptionLog() {
     // throw notFoundException(String.format("not found exception, %s", LocalDateTime.now())).get();
     // }
-
 }
