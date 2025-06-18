@@ -33,7 +33,7 @@
 
 ## 分层结构说明
 
-![image-20211013181013502](https://pic-bed-1256249917.cos.ap-chengdu.myqcloud.com/uPic/image-20211013181013502.png)
+![image-20211013181013502](images/ddd-onion-architecture.png)
 
 package分层调用关系如下：
 ```
@@ -45,7 +45,7 @@ Architectures.LayeredArchitecture layeredArchitectureDelegate = layeredArchitect
         .whereLayer(DOMAIN_MODEL_LAYER).mayOnlyBeAccessedByLayers(DOMAIN_SERVICE_LAYER, APPLICATION_SERVICE_LAYER, ADAPTER_LAYER)
         .whereLayer(DOMAIN_SERVICE_LAYER).mayOnlyBeAccessedByLayers(APPLICATION_SERVICE_LAYER, ADAPTER_LAYER)
         .whereLayer(APPLICATION_SERVICE_LAYER).mayOnlyBeAccessedByLayers(ADAPTER_LAYER)
-        .withOptionalLayers(optionalLayers);    
+        .withOptionalLayers(optionalLayers);
 ```
 主要是为了隔离代码的传播，实现高内聚低耦合。
 
@@ -62,12 +62,12 @@ docker-compose up -d
 也可以使用命令：
 ```
 ./gradlew composeUp
-./gradlew composeDown 
+./gradlew composeDown
 ```
 
 ### 编译
 ```
-./gradlew clean build 
+./gradlew clean build
 
 或者
 
